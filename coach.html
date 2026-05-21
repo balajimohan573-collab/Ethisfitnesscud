@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Coach Ethiraj – Ethis Fitness Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --hot:#FF2D6B;
+  --electric:#FF6B00;
+  --lime:#C8FF00;
+  --deep:#080808;
+  --surface:#101010;
+  --card:#181818;
+  --card2:#141414;
+  --muted:#555;
+  --muted2:#888;
+  --white:#fff;
+  --glass:rgba(255,255,255,0.03);
+  --glass-b:rgba(255,255,255,0.07);
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--deep);
+  color:var(--white);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ── NOISE GRAIN ── */
+body::after{
+  content:'';
+  position:fixed;inset:0;z-index:999;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+  opacity:0.5;
+  mix-blend-mode:overlay;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 3rem;
+  background:rgba(8,8,8,0.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,45,107,0.1);
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:3px;
+  background:linear-gradient(90deg,var(--hot),var(--electric));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.back-btn{
+  display:flex;align-items:center;gap:0.5rem;
+  background:rgba(255,45,107,0.08);border:1px solid rgba(255,45,107,0.25);
+  color:var(--hot);text-decoration:none;
+  padding:0.55rem 1.2rem;border-radius:8px;
+  font-size:0.8rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;
+  transition:background 0.2s,border-color 0.2s,transform 0.2s;
+}
+.back-btn:hover{background:rgba(255,45,107,0.15);border-color:var(--hot);transform:translateY(-1px);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:grid;place-items:center;
+  position:relative;overflow:hidden;
+  padding:8rem 3rem 5rem;
+}
+
+/* big diagonal accent */
+.hero::before{
+  content:'';
+  position:absolute;top:-30%;right:-10%;
+  width:70vw;height:120%;
+  background:linear-gradient(145deg,rgba(255,45,107,0.06) 0%,transparent 55%);
+  transform:skewX(-12deg);
+  pointer-events:none;
+}
+.hero::after{
+  content:'ETHIRAJ';
+  position:absolute;bottom:-2rem;left:-1rem;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(6rem,18vw,16rem);
+  letter-spacing:10px;
+  color:rgba(255,45,107,0.04);
+  pointer-events:none;white-space:nowrap;
+  line-height:1;
+}
+
+.hero-grid-bg{
+  position:absolute;inset:0;opacity:0.025;
+  background-image:
+    linear-gradient(var(--muted) 1px,transparent 1px),
+    linear-gradient(90deg,var(--muted) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+
+.hero-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1.1fr;
+  gap:5rem;align-items:center;
+  max-width:1100px;width:100%;
+}
+
+/* left text */
+.hero-text{}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  border:1px solid rgba(255,45,107,0.35);color:var(--hot);
+  padding:0.35rem 1rem;border-radius:100px;
+  font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;
+  font-weight:600;margin-bottom:1.8rem;
+}
+.hero-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,7vw,6rem);
+  letter-spacing:3px;line-height:0.95;
+  margin-bottom:0.6rem;
+}
+.hero-name span{
+  display:block;
+  background:linear-gradient(90deg,var(--hot),var(--electric));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-role{
+  font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted2);margin-bottom:2rem;font-weight:300;
+}
+.hero-bio{
+  color:rgba(255,255,255,0.6);font-size:1rem;line-height:1.8;
+  max-width:420px;margin-bottom:2rem;font-weight:300;
+}
+.cert-pill{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(200,255,0,0.08);border:1px solid rgba(200,255,0,0.25);
+  color:var(--lime);padding:0.55rem 1.2rem;border-radius:8px;
+  font-size:0.78rem;font-weight:700;letter-spacing:0.5px;
+  margin-bottom:2.5rem;
+}
+.cert-pill i{font-size:0.9rem;}
+
+/* hero stats row */
+.hero-stats{
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+  padding-top:2rem;
+  border-top:1px solid var(--glass-b);
+}
+.h-stat-num{
+  font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:1;
+  background:linear-gradient(90deg,var(--hot),var(--electric));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.h-stat-lbl{font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);margin-top:0.15rem;}
+
+/* hero visual: stacked cards */
+.hero-visual{position:relative;height:520px;}
+
+.photo-stack{
+  position:relative;width:100%;height:100%;
+}
+
+.stack-card{
+  position:absolute;
+  border-radius:20px;overflow:hidden;
+  border:1px solid var(--glass-b);
+  transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.stack-card img{width:100%;height:100%;object-fit:cover;display:block;}
+
+.stack-card:nth-child(1){
+  width:78%;height:420px;
+  top:0;right:0;
+  transform:rotate(2deg);
+  z-index:3;
+}
+.stack-card:nth-child(2){
+  width:62%;height:320px;
+  top:40px;left:0;
+  transform:rotate(-3deg);
+  z-index:2;
+  border-color:rgba(255,45,107,0.2);
+}
+.stack-card:nth-child(3){
+  width:45%;height:220px;
+  bottom:0;right:5%;
+  transform:rotate(1.5deg);
+  z-index:1;
+}
+
+.hero-visual:hover .stack-card:nth-child(1){transform:rotate(0deg) translateY(-8px);}
+.hero-visual:hover .stack-card:nth-child(2){transform:rotate(-1deg) translateX(-6px);}
+.hero-visual:hover .stack-card:nth-child(3){transform:rotate(0deg) translateY(6px);}
+
+/* floating badge on visual */
+.float-badge{
+  position:absolute;bottom:30px;left:20px;z-index:10;
+  background:rgba(8,8,8,0.85);
+  border:1px solid rgba(255,45,107,0.3);
+  border-radius:12px;padding:0.8rem 1.1rem;
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;gap:0.75rem;
+}
+.float-badge .fb-num{
+  font-family:'Bebas Neue',sans-serif;font-size:2rem;
+  background:linear-gradient(90deg,var(--hot),var(--electric));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  line-height:1;
+}
+.float-badge .fb-text{font-size:0.72rem;color:var(--muted2);letter-spacing:1px;text-transform:uppercase;line-height:1.4;}
+
+/* instagram btn */
+.insta-btn{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  color:white;text-decoration:none;
+  padding:0.75rem 1.4rem;border-radius:10px;
+  font-weight:700;font-size:0.85rem;letter-spacing:0.5px;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 20px rgba(225,48,108,0.3);
+}
+.insta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(225,48,108,0.5);}
+.insta-btn i{font-size:1.1rem;}
+
+/* ── CREDENTIALS BELT ── */
+.belt{
+  background:var(--card2);
+  border-top:1px solid var(--glass-b);
+  border-bottom:1px solid var(--glass-b);
+  overflow:hidden;
+  padding:1.2rem 0;
+  white-space:nowrap;
+}
+.belt-track{
+  display:inline-flex;gap:0;
+  animation:scrollBelt 18s linear infinite;
+}
+.belt-track:hover{animation-play-state:paused;}
+.belt-item{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  padding:0 2.5rem;
+  font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted2);font-weight:600;
+}
+.belt-item i{color:var(--hot);font-size:0.8rem;}
+.belt-dot{
+  display:inline-block;width:4px;height:4px;border-radius:50%;
+  background:rgba(255,45,107,0.3);
+}
+@keyframes scrollBelt{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+/* ── SECTION COMMONS ── */
+section{padding:6rem 3rem;}
+.section-tag{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--hot);font-weight:600;margin-bottom:0.75rem;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:2px;line-height:1;margin-bottom:1.2rem;}
+.section-sub{color:var(--muted2);font-size:1rem;max-width:480px;line-height:1.7;font-weight:300;}
+
+/* ── SPECIALISATIONS ── */
+#skills{background:var(--surface);}
+.skills-wrap{max-width:1100px;margin:3rem auto 0;}
+.skills-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1rem;margin-top:2.5rem;
+}
+.skill-card{
+  background:var(--card);border:1px solid var(--glass-b);
+  border-radius:16px;padding:1.6rem;
+  position:relative;overflow:hidden;
+  transition:transform 0.3s,border-color 0.3s;
+}
+.skill-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--hot),var(--electric));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+}
+.skill-card:hover{transform:translateY(-4px);border-color:rgba(255,45,107,0.25);}
+.skill-card:hover::before{transform:scaleX(1);}
+.skill-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:rgba(255,45,107,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:1rem;
+}
+.skill-card h3{font-size:1rem;font-weight:700;margin-bottom:0.5rem;}
+.skill-card p{font-size:0.82rem;color:var(--muted2);line-height:1.6;}
+
+/* ── CERTIFICATES ── */
+#certificates{background:var(--deep);}
+.cert-wrap{max-width:1100px;margin:0 auto;}
+
+.cert-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;}
+
+.cert-count{
+  font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;
+  background:linear-gradient(90deg,var(--hot),var(--electric));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.cert-count-lbl{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);}
+
+/* cert masonry */
+.cert-masonry{
+  columns:4;column-gap:0.9rem;
+}
+@media(max-width:900px){.cert-masonry{columns:3;}}
+@media(max-width:620px){.cert-masonry{columns:2;}}
+
+.cert-item{
+  break-inside:avoid;
+  margin-bottom:0.9rem;
+  position:relative;
+  border-radius:14px;overflow:hidden;
+  border:1px solid var(--glass-b);
+  cursor:pointer;
+  transition:transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94),border-color 0.3s,box-shadow 0.3s;
+  background:var(--card);
+}
+.cert-item:hover{
+  transform:translateY(-5px) scale(1.02);
+  border-color:rgba(255,45,107,0.35);
+  box-shadow:0 16px 50px rgba(0,0,0,0.7);
+}
+.cert-item img{
+  width:100%;display:block;
+  object-fit:cover;
+  transition:transform 0.4s;
+}
+.cert-item:hover img{transform:scale(1.05);}
+
+/* cert number label */
+.cert-num{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(8,8,8,0.9),transparent);
+  padding:1.5rem 0.8rem 0.7rem;
+  font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);
+}
+
+/* ── POSES / ACTION SHOTS ── */
+#poses{background:var(--surface);}
+.poses-wrap{max-width:1100px;margin:0 auto;}
+
+.pose-scroll-track{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:0.9rem;
+  margin-top:2.5rem;
+}
+@media(max-width:900px){.pose-scroll-track{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.pose-scroll-track{grid-template-columns:repeat(2,1fr);}}
+
+.pose-item{
+  position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid var(--glass-b);
+  aspect-ratio:2/3;cursor:pointer;
+  transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;
+}
+.pose-item:nth-child(even){margin-top:1.5rem;}
+.pose-item:hover{
+  transform:translateY(-6px) scale(1.03);
+  border-color:rgba(255,45,107,0.4);
+  box-shadow:0 20px 60px rgba(0,0,0,0.7),0 0 0 1px rgba(255,45,107,0.1);
+  z-index:2;
+}
+.pose-item img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  transition:transform 0.4s;filter:saturate(1.1);
+}
+.pose-item:hover img{transform:scale(1.08);}
+.pose-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,8,8,0.75) 0%,transparent 50%);
+  opacity:0;transition:opacity 0.3s;
+  display:flex;align-items:flex-end;padding:0.75rem;
+}
+.pose-item:hover .pose-overlay{opacity:1;}
+.pose-overlay span{
+  font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,0.7);
+}
+
+/* accent pose – first one is large */
+.pose-item:first-child{
+  grid-row:span 2;aspect-ratio:auto;height:100%;
+}
+.pose-item:first-child img{height:100%;}
+
+/* ── LIGHTBOX ── */
+.lightbox{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(4,4,4,0.97);
+  backdrop-filter:blur(24px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.25s;
+}
+.lightbox.open{opacity:1;pointer-events:all;}
+.lb-img{
+  max-width:88vw;max-height:86vh;
+  border-radius:16px;border:1px solid rgba(255,45,107,0.2);
+  object-fit:contain;
+  transform:scale(0.95);transition:transform 0.25s;
+}
+.lightbox.open .lb-img{transform:scale(1);}
+.lb-close{
+  position:fixed;top:1.5rem;right:1.5rem;
+  background:rgba(255,45,107,0.12);border:1px solid rgba(255,45,107,0.3);
+  color:var(--hot);border-radius:50%;
+  width:44px;height:44px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;transition:background 0.2s;
+}
+.lb-close:hover{background:rgba(255,45,107,0.28);}
+.lb-nav{
+  position:fixed;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,0.04);border:1px solid var(--glass-b);
+  color:rgba(255,255,255,0.65);border-radius:50%;
+  width:46px;height:46px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.lb-nav:hover{background:rgba(255,45,107,0.15);border-color:rgba(255,45,107,0.3);color:#fff;}
+.lb-prev{left:1.5rem;}
+.lb-next{right:1.5rem;}
+
+/* ── CTA ── */
+#cta{
+  background:
+    radial-gradient(ellipse 90% 120% at 20% 50%,rgba(255,45,107,0.14) 0%,transparent 55%),
+    radial-gradient(ellipse 80% 100% at 90% 10%,rgba(255,107,0,0.08) 0%,transparent 55%),
+    var(--surface);
+  border-top:1px solid rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.cta-inner{
+  max-width:700px;margin:0 auto;text-align:center;
+}
+.cta-inner h2{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:3px;margin-bottom:0.75rem;
+}
+.cta-inner p{color:var(--muted2);margin-bottom:2rem;font-size:1rem;line-height:1.7;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:0.7rem;
+  background:#25D366;color:white;
+  padding:0.95rem 2rem;border-radius:10px;text-decoration:none;
+  font-weight:700;font-size:0.9rem;letter-spacing:0.5px;
+  box-shadow:0 6px 28px rgba(37,211,102,0.3);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 38px rgba(37,211,102,0.45);}
+.btn-home{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);
+  color:white;padding:0.95rem 2rem;border-radius:10px;text-decoration:none;
+  font-weight:700;font-size:0.9rem;letter-spacing:0.5px;
+  transition:border-color 0.2s,background 0.2s;
+}
+.btn-home:hover{border-color:var(--hot);background:rgba(255,45,107,0.08);}
+
+/* ── FOOTER ── */
+footer{
+  background:#030303;border-top:1px solid rgba(255,255,255,0.04);
+  padding:2.5rem 3rem;text-align:center;
+}
+.footer-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;
+  background:linear-gradient(90deg,var(--hot),var(--electric));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.5rem;
+}
+footer p{font-size:0.78rem;color:var(--muted);}
+
+/* ── FLOATING WA ── */
+.float-wa{
+  position:fixed;right:18px;bottom:18px;z-index:120;
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:#25D366;color:white;text-decoration:none;
+  padding:0.85rem 1.1rem;border-radius:999px;
+  box-shadow:0 10px 35px rgba(37,211,102,0.35);
+  font-weight:800;font-size:0.9rem;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.55s,transform 0.55s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem;}
+  .hero{padding:7rem 1.5rem 4rem;}
+  .hero-inner{grid-template-columns:1fr;gap:3rem;}
+  .hero-visual{height:340px;}
+  .stack-card:nth-child(1){width:80%;height:300px;}
+  .stack-card:nth-child(2){width:60%;height:220px;}
+  .stack-card:nth-child(3){width:45%;height:160px;}
+  section{padding:4rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ethis Fitness</div>
+  <a href="index.html" class="back-btn">
+    <i class="fa fa-arrow-left" style="font-size:0.75rem;"></i> Back to Home
+  </a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+
+    <!-- LEFT -->
+    <div class="hero-text reveal">
+      <div class="hero-tag">
+        <i class="fa fa-dumbbell" style="font-size:0.7rem;"></i>
+        Head Trainer · Ethis Fitness Centre
+      </div>
+      <h1 class="hero-name">
+        ETHIRAJ
+        <span>.S</span>
+      </h1>
+      <p class="hero-role">Certified Fitness Trainer &amp; Coach</p>
+      <p class="hero-bio">Over 10 years of transforming lives through expert coaching, personalised training, and a deep commitment to every member's journey — from the very first rep to their greatest milestone.</p>
+      <div class="cert-pill">
+        <i class="fa fa-certificate"></i>
+        P.G Diploma in Gym Instruction · Certified Trainer
+      </div>
+
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+        <a href="https://www.instagram.com/ethis_fitness_centre_cuddalore" target="_blank" class="insta-btn">
+          <i class="fab fa-instagram"></i> Follow on Instagram
+        </a>
+        <a href="https://wa.me/919444424363?text=Hi%20Coach%20Ethiraj!%20I%27d%20like%20to%20know%20more%20about%20training." target="_blank" class="btn-wa" style="padding:0.65rem 1.2rem;font-size:0.82rem;box-shadow:none;">
+          <i class="fab fa-whatsapp"></i> Chat with Coach
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="h-stat-num">10+</div>
+          <div class="h-stat-lbl">Years Training</div>
+        </div>
+        <div>
+          <div class="h-stat-num">143+</div>
+          <div class="h-stat-lbl">Members Coached</div>
+        </div>
+        <div>
+          <div class="h-stat-num">4.7★</div>
+          <div class="h-stat-lbl">Avg Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT – stacked photos -->
+    <div class="hero-visual reveal" style="transition-delay:0.15s;">
+      <div class="photo-stack">
+        <div class="stack-card">
+          <img loading="lazy"
+               src="images/pose6.png"
+               onerror="this.src='https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&auto=format&fit=crop&q=80'"
+               alt="Coach Ethiraj – pose 1">
+        </div>
+        
+      </div>
+      <div class="float-badge">
+        <div>
+          <div class="fb-num">10+</div>
+        </div>
+        <div class="fb-text">Years of<br>Expert Training</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── SCROLLING BELT ── -->
+<div class="belt">
+  <div class="belt-track">
+    <!-- repeated twice for seamless loop -->
+    <span class="belt-item"><i class="fa fa-certificate"></i> P.G Diploma – Gym Instruction</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-dumbbell"></i> Strength &amp; Conditioning</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-heartbeat"></i> Aerobics Certified</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-fire"></i> CrossFit Training</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-apple-alt"></i> Nutrition Guidance</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-running"></i> Personal Coaching</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-medal"></i> 10+ Years Experience</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-users"></i> 143+ Members Transformed</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-certificate"></i> P.G Diploma – Gym Instruction</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-dumbbell"></i> Strength &amp; Conditioning</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-heartbeat"></i> Aerobics Certified</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-fire"></i> CrossFit Training</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-apple-alt"></i> Nutrition Guidance</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-running"></i> Personal Coaching</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-medal"></i> 10+ Years Experience</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-users"></i> 143+ Members Transformed</span><span class="belt-dot"></span>
+  </div>
+</div>
+
+<!-- ── SPECIALISATIONS ── -->
+<section id="skills">
+  <div class="skills-wrap">
+    <div class="reveal">
+      <div class="section-tag">Expertise</div>
+      <h2 class="section-title">What Coach Ethiraj<br>Specialises In</h2>
+      <p class="section-sub">A holistic approach to fitness — combining strength, cardio, nutrition and mindset for lasting transformation.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal" style="transition-delay:0.05s;">
+        
+      <div class="skill-card reveal" style="transition-delay:0.1s;">
+       <div class="skill-card reveal" style="transition-delay:0.1s;">
+  <div class="skill-icon">🩺</div>
+  <h3>Sugar &amp; Cholesterol Management</h3>
+  <p>Specialised low-impact training programmes designed for diabetic and high-cholesterol patients — safe, progressive and medically mindful.</p>
+</div>
+      <div class="skill-card reveal" style="transition-delay:0.15s;">
+        <div class="skill-icon">🧘</div>
+        <h3>Posture &amp; Rehabilitation</h3>
+        <p>Physiotherapy-backed training principles to correct posture, recover from injury and build a pain-free foundation.</p>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:0.2s;">
+        <div class="skill-icon">🥗</div>
+        <h3>Nutrition &amp; Diet Planning</h3>
+        <p>Custom meal and supplement guidance to complement your workout — whether the goal is fat loss, muscle gain or health.</p>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:0.25s;">
+        <div class="skill-icon">👩</div>
+        <h3>Women's Specialised Training</h3>
+        <p>Safe, progressive programmes for women at all stages — including post-natal recovery, PCOS management and confidence building.</p>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:0.3s;">
+        <div class="skill-icon">📊</div>
+        <h3>Transformation Tracking</h3>
+        <p>Regular assessments, body composition tracking and milestone reviews to keep you motivated and on target.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATES ── -->
+<section id="certificates">
+  <div class="cert-wrap">
+    <div class="cert-header reveal">
+      <div>
+        <div class="section-tag">Credentials</div>
+        <h2 class="section-title">Certifications &amp;<br>Achievements</h2>
+        <p class="section-sub" style="margin-top:0.5rem;">Backed by formal education and continuous professional development.</p>
+      </div>
+      <div style="text-align:right;">
+        <div class="cert-count">9+</div>
+        <div class="cert-count-lbl">Certificates</div>
+      </div>
+    </div>
+
+    <div class="cert-masonry" id="certGrid">
+      <div class="cert-item reveal" data-src="images/certificate1.jpeg" data-label="Certificate 1">
+        <img loading="lazy" src="images/certificate1.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Certificate 1">
+        <div class="cert-num">Cert · 01</div>
+      </div>
+      <div class="cert-item reveal" style="transition-delay:0.05s;" data-src="images/certificate2.jpeg" data-label="Certificate 2">
+        <img loading="lazy" src="images/certificate2.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Certificate 2">
+        <div class="cert-num">Cert · 02</div>
+      </div>
+      <div class="cert-item reveal" style="transition-delay:0.1s;" data-src="images/certificate4.jpeg" data-label="Certificate 4">
+        <img loading="lazy" src="images/certificate4.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Certificate 4">
+        <div class="cert-num">Cert · 03</div>
+      </div>
+      <div class="cert-item reveal" style="transition-delay:0.15s;" data-src="images/certificate5.jpeg" data-label="Certificate 5">
+        <img loading="lazy" src="images/certificate5.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Certificate 5">
+        <div class="cert-num">Cert · 04</div>
+      </div>
+      <div class="cert-item reveal" style="transition-delay:0.2s;" data-src="images/certificate6.jpeg" data-label="Certificate 6">
+        <img loading="lazy" src="images/certificate6.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Certificate 6">
+        <div class="cert-num">Cert · 05</div>
+      </div>
+      <div class="cert-item reveal" style="transition-delay:0.25s;" data-src="images/certificate7.jpeg" data-label="Certificate 7">
+        <img loading="lazy" src="images/certificate7.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Certificate 7">
+        <div class="cert-num">Cert · 06</div>
+      </div>
+      <div class="cert-item reveal" style="transition-delay:0.3s;" data-src="images/certificate8.jpeg" data-label="Certificate 8">
+        <img loading="lazy" src="images/certificate8.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Certificate 8">
+        <div class="cert-num">Cert · 07</div>
+      </div>
+      <div class="cert-item reveal" style="transition-delay:0.35s;" data-src="images/certificate9.jpeg" data-label="Certificate 9">
+        <img loading="lazy" src="images/certificate9.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Certificate 9">
+        <div class="cert-num">Cert · 08</div>
+      </div>
+      <div class="cert-item reveal" style="transition-delay:0.4s;" data-src="images/certificate10.jpeg" data-label="Certificate 10">
+        <img loading="lazy" src="images/certificate10.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Certificate 10">
+        <div class="cert-num">Cert · 09</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACTION SHOTS / POSES ── -->
+<section id="poses">
+  <div class="poses-wrap">
+    <div class="reveal">
+      <div class="section-tag">In Action</div>
+      <h2 class="section-title">The Coach<br>At Work</h2>
+      <p class="section-sub">Discipline, form and passion — every session is a masterclass.</p>
+    </div>
+
+    <div class="pose-scroll-track" id="poseGrid">
+      <div class="pose-item reveal" data-src="images/pose6.png" style="transition-delay:0s;">
+        <img loading="lazy"
+             src="images/pose6.png"
+             onerror="this.src='https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&auto=format&fit=crop&q=80'"
+             alt="Pose 6">
+        <div class="pose-overlay"><span>Training</span></div>
+      </div>
+      <div class="pose-item reveal" data-src="images/pose5.png" style="transition-delay:0.06s;">
+        <img loading="lazy"
+             src="images/pose5.png"
+             onerror="this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&auto=format&fit=crop&q=80'"
+             alt="Pose 5">
+        <div class="pose-overlay"><span>Strength</span></div>
+      </div>
+      <div class="pose-item reveal" data-src="images/pose4.png" style="transition-delay:0.12s;">
+        <img loading="lazy"
+             src="images/pose4.png"
+             onerror="this.src='https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&auto=format&fit=crop&q=80'"
+             alt="Pose 4">
+        <div class="pose-overlay"><span>Form</span></div>
+      </div>
+      <div class="pose-item reveal" data-src="images/pose3.png" style="transition-delay:0.18s;">
+        <img loading="lazy"
+             src="images/pose3.png"
+             onerror="this.src='https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=500&auto=format&fit=crop&q=80'"
+             alt="Pose 3">
+        <div class="pose-overlay"><span>Coaching</span></div>
+      </div>
+      <div class="pose-item reveal" data-src="images/pose2.png" style="transition-delay:0.24s;">
+        <img loading="lazy"
+             src="images/pose2.png"
+             onerror="this.src='https://images.unsplash.com/photo-1541338784564-51087dabc0de?w=500&auto=format&fit=crop&q=80'"
+             alt="Pose 2">
+        <div class="pose-overlay"><span>Power</span></div>
+      </div>
+      <div class="pose-item reveal" data-src="images/pose1.png" style="transition-delay:0.3s;">
+        <img loading="lazy"
+             src="images/pose1.png"
+             onerror="this.src='https://images.unsplash.com/photo-1649887974297-4be052375a67?w=500&auto=format&fit=crop&q=80'"
+             alt="Pose 1">
+        <div class="pose-overlay"><span>Dedication</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta">
+  <div class="cta-inner reveal">
+    <div class="section-tag" style="text-align:center;margin-bottom:1rem;">Train With The Best</div>
+    <h2>Start Your Journey<br>With Coach Ethiraj</h2>
+    <p>Book a free trial session, meet the coach, and take the first step towards the strongest version of yourself.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/919444424363?text=Hi%20Coach%20Ethiraj!%20I%27d%20like%20to%20book%20a%20free%20trial%20session." target="_blank" class="btn-wa">
+        <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i> Book Free Trial
+      </a>
+      <a href="index.html" class="btn-home">
+        <i class="fa fa-home" style="font-size:0.9rem;"></i> Visit Ethis Fitness
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Ethis Fitness</div>
+  <p>Ethis Fitness Centre · Manjakkuppam, Cuddalore, Tamil Nadu</p>
+  <p style="margin-top:0.4rem;">Nethaji Road, near Lena Medical · +91 9444424363</p>
+  <p style="margin-top:1rem;font-size:0.68rem;opacity:0.35;">© 2026 Ethis Fitness Centre. All rights reserved.</p>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a class="float-wa" href="https://wa.me/919444424363?text=Hi%20Ethis%20Fitness!%20I%27m%20interested%20in%20joining." target="_blank">
+  <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i>
+  <span>WhatsApp</span>
+</a>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-close" id="lbClose"><i class="fa fa-times"></i></button>
+  <button class="lb-nav lb-prev" id="lbPrev"><i class="fa fa-chevron-left"></i></button>
+  <button class="lb-nav lb-next" id="lbNext"><i class="fa fa-chevron-right"></i></button>
+</div>
+
+<script>
+(function(){
+
+  /* ── Scroll reveal ── */
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); }});
+  }, {threshold:0.07});
+  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+  /* ── Lightbox ── */
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  let items = [], cur = 0;
+
+  function buildItems(){
+    items = [];
+    document.querySelectorAll('.cert-item, .pose-item').forEach(el => {
+      items.push({ src: el.dataset.src || el.querySelector('img').src, alt: el.querySelector('img').alt || '' });
+    });
+  }
+
+  function openLb(idx){
+    buildItems();
+    cur = idx;
+    show(cur);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function show(i){
+    lbImg.src = items[i].src;
+    lbImg.alt = items[i].alt;
+  }
+  function closeLb(){
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* attach click to cert + pose items */
+  function attachClicks(){
+    const allItems = [...document.querySelectorAll('.cert-item, .pose-item')];
+    allItems.forEach((el, i) => {
+      el.addEventListener('click', () => openLb(i));
+    });
+  }
+  attachClicks();
+
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if(e.target === lb) closeLb(); });
+  document.getElementById('lbPrev').addEventListener('click', () => { cur = (cur - 1 + items.length) % items.length; show(cur); });
+  document.getElementById('lbNext').addEventListener('click', () => { cur = (cur + 1) % items.length; show(cur); });
+  document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLb();
+    if(e.key === 'ArrowLeft'){ cur = (cur - 1 + items.length) % items.length; show(cur); }
+    if(e.key === 'ArrowRight'){ cur = (cur + 1) % items.length; show(cur); }
+  });
+
+})();
+</script>
+</body>
+</html>

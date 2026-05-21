@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipment Gallery – Ethis Fitness Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --hot: #FF2D6B;
+    --electric: #FF6B00;
+    --lime: #C8FF00;
+    --deep: #0A0A0A;
+    --surface: #111111;
+    --card: #1A1A1A;
+    --card2: #161616;
+    --muted: #666;
+    --muted2: #888;
+    --white: #ffffff;
+    --glass: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--deep);
+    color: var(--white);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 150px 150px;
+    opacity: 0.4;
+  }
+
+  /* ─── AMBIENT GLOW ─── */
+  .ambient-top {
+    position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 400px;
+    background: radial-gradient(ellipse, rgba(255,45,107,0.12) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .ambient-bot {
+    position: fixed; bottom: -100px; right: -100px;
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(255,107,0,0.08) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,45,107,0.12);
+  }
+
+  .back-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    color: var(--muted2); text-decoration: none;
+    padding: 0.55rem 1.1rem; border-radius: 8px;
+    font-size: 0.82rem; letter-spacing: 0.5px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .back-btn:hover { border-color: rgba(255,45,107,0.4); color: var(--white); }
+
+  .header-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--hot), var(--electric));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .header-badge {
+    background: rgba(255,45,107,0.1); border: 1px solid rgba(255,45,107,0.25);
+    color: var(--hot); padding: 0.4rem 0.9rem; border-radius: 6px;
+    font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 700;
+  }
+
+  /* ─── HERO STRIP ─── */
+  .gallery-hero {
+    position: relative; z-index: 1;
+    padding: 4rem 2.5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .gallery-hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid rgba(255,45,107,0.3); color: var(--hot);
+    padding: 0.35rem 1rem; border-radius: 100px;
+    font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 1.5rem;
+  }
+  .gallery-hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    letter-spacing: 4px; line-height: 0.95;
+    margin-bottom: 1rem;
+  }
+  .gallery-hero h1 span {
+    background: linear-gradient(90deg, var(--hot), var(--electric));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .gallery-hero p {
+    color: var(--muted2); font-size: 1rem; max-width: 500px;
+    margin: 0 auto 2rem; line-height: 1.7;
+  }
+
+  /* ─── FILTER TABS ─── */
+  .filter-bar {
+    display: flex; gap: 0.5rem; justify-content: center;
+    flex-wrap: wrap; padding: 0 2.5rem 2.5rem;
+    position: relative; z-index: 1;
+  }
+  .filter-btn {
+    background: var(--glass); border: 1px solid var(--glass-border);
+    color: var(--muted2); padding: 0.5rem 1.2rem; border-radius: 100px;
+    font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: rgba(255,45,107,0.3); color: var(--white); }
+  .filter-btn.active {
+    background: linear-gradient(135deg, var(--hot), var(--electric));
+    border-color: transparent; color: white;
+    box-shadow: 0 4px 20px rgba(255,45,107,0.3);
+  }
+
+  /* ─── STATS ROW ─── */
+  .stats-strip {
+    position: relative; z-index: 1;
+    display: flex; gap: 0; justify-content: center;
+    max-width: 700px; margin: 0 auto 3rem;
+    background: var(--card2); border: 1px solid var(--glass-border);
+    border-radius: 14px; overflow: hidden;
+  }
+  .stat-item {
+    flex: 1; padding: 1rem;
+    text-align: center; position: relative;
+  }
+  .stat-item + .stat-item::before {
+    content: ''; position: absolute; left: 0; top: 20%; height: 60%;
+    width: 1px; background: var(--glass-border);
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1;
+    background: linear-gradient(90deg, var(--hot), var(--electric));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-lbl { font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ─── MASONRY GRID ─── */
+  .gallery-main {
+    position: relative; z-index: 1;
+    padding: 0 2rem 5rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .masonry {
+    columns: 3; column-gap: 1rem;
+  }
+  @media(max-width: 900px) { .masonry { columns: 2; } }
+  @media(max-width: 560px) { .masonry { columns: 1; } }
+
+  /* ─── MEDIA CARD ─── */
+  .media-card {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    background: var(--card); border: 1px solid var(--glass-border);
+    border-radius: 18px; overflow: hidden;
+    position: relative; cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94),
+                border-color 0.3s, box-shadow 0.3s;
+  }
+  .media-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(255,45,107,0.35);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,45,107,0.1);
+  }
+
+  .media-card img,
+  .media-card video {
+    width: 100%; display: block;
+    object-fit: cover; transition: transform 0.4s;
+  }
+  .media-card:hover img,
+  .media-card:hover video { transform: scale(1.04); }
+
+  /* Tall / short variants */
+  .media-card.tall img,
+  .media-card.tall video { height: 340px; }
+  .media-card.mid img,
+  .media-card.mid video { height: 240px; }
+  .media-card.short img,
+  .media-card.short video { height: 180px; }
+
+  /* Video badge */
+  .vid-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(255,45,107,0.9); color: white;
+    border-radius: 6px; padding: 0.25rem 0.55rem;
+    font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 700;
+    display: flex; align-items: center; gap: 4px; backdrop-filter: blur(4px);
+  }
+  .vid-badge i { font-size: 0.6rem; }
+
+  /* Category badge */
+  .cat-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(10,10,10,0.75); border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.85);
+    border-radius: 100px; padding: 0.2rem 0.7rem;
+    font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase;
+    backdrop-filter: blur(6px);
+  }
+
+  /* Caption hover reveal */
+  .card-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 60%, transparent 100%);
+    padding: 2rem 1rem 1rem;
+    transform: translateY(60%); transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .media-card:hover .card-caption { transform: translateY(0); }
+  .card-caption h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .card-caption p { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .card-caption .expand-icon {
+    position: absolute; top: 0.75rem; right: 0.85rem;
+    color: var(--hot); font-size: 0.7rem;
+  }
+
+  /* Feature accent line */
+  .media-card.featured::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--hot), var(--electric));
+  }
+
+  /* ─── LIGHTBOX ─── */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(5,5,5,0.97);
+    backdrop-filter: blur(20px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox-inner {
+    position: relative; max-width: 90vw; max-height: 90vh;
+    display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  }
+  .lightbox-media {
+    max-width: 85vw; max-height: 75vh;
+    border-radius: 16px; border: 1px solid rgba(255,45,107,0.2);
+    object-fit: contain;
+  }
+  .lightbox-info {
+    text-align: center; max-width: 500px;
+  }
+  .lightbox-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; }
+  .lightbox-info p { color: var(--muted2); font-size: 0.85rem; margin-top: 0.25rem; }
+  .lightbox-close {
+    position: fixed; top: 1.5rem; right: 1.5rem;
+    background: rgba(255,45,107,0.15); border: 1px solid rgba(255,45,107,0.3);
+    color: var(--hot); border-radius: 50%;
+    width: 42px; height: 42px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; transition: background 0.2s;
+  }
+  .lightbox-close:hover { background: rgba(255,45,107,0.3); }
+  .lightbox-nav {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+    color: rgba(255,255,255,0.7); border-radius: 50%;
+    width: 46px; height: 46px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; transition: all 0.2s;
+  }
+  .lightbox-nav:hover { background: rgba(255,45,107,0.15); border-color: rgba(255,45,107,0.3); color: white; }
+  .lightbox-nav.prev { left: 1.5rem; }
+  .lightbox-nav.next { right: 1.5rem; }
+
+  /* ─── SECTION DIVIDER ─── */
+  .section-divider {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 2rem 1.5rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .section-divider h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: 3px;
+    white-space: nowrap; color: var(--muted2);
+  }
+  .section-divider h2 span { color: var(--hot); }
+  .divider-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(255,45,107,0.3), transparent);
+  }
+
+  /* ─── CTA BOTTOM ─── */
+  .bottom-cta {
+    position: relative; z-index: 1;
+    margin: 0 2rem 4rem;
+    background: linear-gradient(135deg, rgba(255,45,107,0.1), rgba(255,107,0,0.06));
+    border: 1px solid rgba(255,45,107,0.2);
+    border-radius: 20px; padding: 3rem 2rem;
+    text-align: center; overflow: hidden;
+  }
+  .bottom-cta::before {
+    content: 'ETHIS';
+    position: absolute; bottom: -20px; right: 20px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 10rem;
+    color: rgba(255,45,107,0.04); letter-spacing: 10px; pointer-events: none;
+  }
+  .bottom-cta h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: 2px; margin-bottom: 0.75rem;
+  }
+  .bottom-cta p { color: var(--muted2); margin-bottom: 1.5rem; }
+  .cta-wa {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: #25D366; color: white;
+    padding: 0.95rem 2.2rem; border-radius: 10px;
+    text-decoration: none; font-weight: 700; font-size: 0.95rem;
+    box-shadow: 0 6px 30px rgba(37,211,102,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-wa:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(37,211,102,0.45); }
+
+  /* ─── FLOATING WHATSAPP ─── */
+  .float-wa {
+    position: fixed; right: 18px; bottom: 18px; z-index: 120;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: #25D366; color: white; text-decoration: none;
+    padding: 0.85rem 1.1rem; border-radius: 999px;
+    box-shadow: 0 10px 35px rgba(37,211,102,0.35);
+    font-weight: 800; font-size: 0.9rem;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.5s, transform 0.5s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width: 600px) {
+    header { padding: 0.9rem 1.2rem; }
+    .gallery-hero { padding: 2.5rem 1.5rem 1.5rem; }
+    .gallery-main { padding: 0 1rem 3rem; }
+    .section-divider { padding: 1rem 1rem 1rem; }
+    .bottom-cta { margin: 0 1rem 3rem; padding: 2rem 1.2rem; }
+    .lightbox-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ambient-top"></div>
+<div class="ambient-bot"></div>
+
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="back-btn">
+    <i class="fa fa-arrow-left" style="font-size:0.75rem;"></i> Back to Site
+  </a>
+  <div class="header-logo">Ethis Fitness</div>
+  <div class="header-badge">Equipment Gallery</div>
+</header>
+
+<!-- HERO -->
+<div class="gallery-hero reveal">
+  <div class="gallery-hero-tag">
+    <i class="fa fa-dumbbell" style="font-size:0.7rem;"></i>
+    Inside Ethis Fitness Centre
+  </div>
+  <h1>OUR <span>EQUIPMENT</span><br>GALLERY</h1>
+  <p>World-class machines. Real workouts. Discover every zone of our gym — from cardio to strength to studio classes.</p>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-bar reveal">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="strength">Strength</button>
+  <button class="filter-btn" data-filter="cardio">Cardio</button>
+  <button class="filter-btn" data-filter="studio">Studio</button>
+  <button class="filter-btn" data-filter="training">Training</button>
+  <button class="filter-btn" data-filter="video">Videos</button>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip reveal">
+  <div class="stat-item">
+    <div class="stat-num">40+</div>
+    <div class="stat-lbl">Machines</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-lbl">Zones</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-lbl">Unisex</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">6AM</div>
+    <div class="stat-lbl">Opens</div>
+  </div>
+</div>
+
+<!-- ── SECTION: STRENGTH ── -->
+<div class="section-divider reveal">
+  <h2><span>💪</span> STRENGTH ZONE</h2>
+  <div class="divider-line"></div>
+</div>
+
+<div class="gallery-main">
+  <div class="masonry" id="galleryGrid">
+
+    <!-- Strength cards -->
+    <div class="media-card tall featured reveal" data-cat="strength"
+         data-title="Cable & Free Weight Zone" data-desc="Full range of dumbbells, barbells and cable machines for compound and isolation work.">
+      <span class="cat-badge">Strength</span>
+      <img loading="lazy" src="images/eqgal1.png" alt="Weight room">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Cable & Free Weight Zone</h3>
+        <p>Full range of dumbbells, barbells and cable machines.</p>
+      </div>
+    </div>
+
+    <div class="media-card mid reveal" data-cat="strength"
+         data-title="Dumbbell Rack" data-desc="Premium dumbbell sets from 2 kg to 40 kg, perfectly organised for quick access.">
+      <span class="cat-badge">Strength</span>
+      <img loading="lazy" src="images/eqgal2.png" alt="Dumbbell rack">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Dumbbell Rack</h3>
+        <p>2 kg to 40 kg, perfectly organised for quick access.</p>
+      </div>
+    </div>
+
+    <!-- Video – Strength -->
+    <div class="media-card mid reveal" data-cat="strength video"
+         data-title="Strength Training Session" data-desc="Watch a real training session with our expert coach guiding form and technique.">
+      <span class="cat-badge">Strength</span>
+      <span class="vid-badge"><i class="fa fa-play"></i> Video</span>
+      <video autoplay muted loop playsinline>
+        <source src="videos/str.mp4" type="video/mp4">
+      </video>
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Strength Training Session</h3>
+        <p>Expert-guided form and technique.</p>
+      </div>
+    </div>
+
+    <div class="media-card short reveal" data-cat="strength"
+         data-title="Bench Press Station" data-desc="Flat and incline bench press with full safety rack — perfect for chest and tricep development.">
+      <span class="cat-badge">Strength</span>
+      <img loading="lazy" src="images/eqgal3.png" alt="Bench press">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Bench Press Station</h3>
+        <p>Flat and incline bench with full safety rack.</p>
+      </div>
+    </div>
+
+    <!-- Leg press -->
+    <div class="media-card mid reveal" data-cat="strength"
+         data-title="Leg Press Machine" data-desc="Heavy-duty leg press and extension machines for safe lower-body training.">
+      <span class="cat-badge">Legs</span>
+      <img loading="lazy" src="images/eqgal4.png" alt="Leg press machine">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Leg Press Machine</h3>
+        <p>Safe lower-body training with expert guidance.</p>
+      </div>
+    </div>
+
+    <!-- Cardio -->
+    <div class="media-card tall reveal" data-cat="cardio"
+         data-title="Cardio Zone" data-desc="Modern treadmills, cross-trainers and bikes for warm-up, fat burn and stamina building.">
+      <span class="cat-badge">Cardio</span>
+      <img loading="lazy" src="images/eqgal5.png" alt="Cardio machines">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Cardio Zone</h3>
+        <p>Treadmills, cross-trainers & bikes for endurance.</p>
+      </div>
+    </div>
+
+    <!-- Studio / Bar video -->
+    <div class="media-card mid reveal featured" data-cat="studio video"
+         data-title="Weight Bar Training" data-desc="Our daily weight bar and floor exercise sessions — a favourite for toning and flexibility.">
+      <span class="cat-badge">Studio</span>
+      <span class="vid-badge"><i class="fa fa-play"></i> Video</span>
+      <video autoplay muted loop playsinline>
+        <source src="videos/bar.mp4" type="video/mp4">
+      </video>
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Weight Bar Training</h3>
+        <p>Daily sessions for toning, flexibility and core.</p>
+      </div>
+    </div>
+
+    <div class="media-card mid reveal" data-cat="studio"
+         data-title="Aerobics & Crossfit Studio" data-desc="High-energy group classes with full-floor space. Aerobics, crossfit and HIIT every day.">
+      <span class="cat-badge">Studio</span>
+      <img loading="lazy" src="images/eqgal6.png" alt="Aerobics studio">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Aerobics & Crossfit Studio</h3>
+        <p>High-energy group classes every day.</p>
+      </div>
+    </div>
+
+    <!-- Training video from main site -->
+    <div class="media-card tall reveal" data-cat="training video"
+         data-title="Live Training Session" data-desc="Our trainer in action — real members, real workouts, real results at Ethis Fitness Centre.">
+      <span class="cat-badge">Training</span>
+      <span class="vid-badge"><i class="fa fa-play"></i> Live</span>
+      <video autoplay muted loop playsinline>
+        <source src="videos/train3.mp4" type="video/mp4">
+      </video>
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Live Training Session</h3>
+        <p>Real members, real workouts, real results.</p>
+      </div>
+    </div>
+
+    <div class="media-card short reveal" data-cat="training"
+         data-title="Personal Training" data-desc="One-on-one guidance for posture correction, safe form, and targeted fitness goals.">
+      <span class="cat-badge">Training</span>
+      <img loading="lazy" src="images/eqgal7.png" alt="Personal training">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Personal Training</h3>
+        <p>One-on-one posture and form correction.</p>
+      </div>
+    </div>
+
+    <div class="media-card mid reveal" data-cat="studio"
+         data-title="Floor Exercise Zone" data-desc="Daily floor sessions targeting abs, glutes, back and flexibility — open to all members.">
+      <span class="cat-badge">Floor</span>
+      <img loading="lazy" src="images/eqgal8.png" alt="Floor exercise">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Floor Exercise Zone</h3>
+        <p>Abs, glutes, back and flexibility sessions.</p>
+      </div>
+    </div>
+
+    <div class="media-card short reveal" data-cat="cardio"
+         data-title="Warm-Up & Stretch Area" data-desc="Dedicated space for warm-up, cool-down, and stretching routines to prevent injury.">
+      <span class="cat-badge">Cardio</span>
+      <img loading="lazy" src="images/eqgal9.png" alt="Stretch zone">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Warm-Up & Stretch Area</h3>
+        <p>Cool-down & stretch for injury prevention.</p>
+      </div>
+    </div>
+
+    <div class="media-card mid reveal" data-cat="strength"
+         data-title="Gym Interior — Overview" data-desc="A full view of the Ethis Fitness Centre floor — unisex, spacious, and well-equipped.">
+      <span class="cat-badge">Interior</span>
+      <img loading="lazy" src="images/interior.png" onerror="this.src='https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800&auto=format&fit=crop&q=80'" alt="Gym interior">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Gym Interior</h3>
+        <p>Unisex, spacious, and well-equipped.</p>
+      </div>
+    </div>
+
+    <div class="media-card mid reveal" data-cat="strength"
+         data-title="Equipment Zone" data-desc="Our full equipment lineup — carefully maintained and arranged for smooth workout flow.">
+      <span class="cat-badge">Equipment</span>
+      <img loading="lazy" src="images/eqmzone.png" onerror="this.src='https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?w=800&auto=format&fit=crop&q=80'" alt="Equipment zone">
+      <div class="card-caption">
+        <span class="expand-icon"><i class="fa fa-expand"></i></span>
+        <h3>Equipment Zone</h3>
+        <p>Carefully maintained for smooth workout flow.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="bottom-cta reveal">
+  <h2>Come Train With Us</h2>
+  <p>Experience the equipment yourself — book a free trial session today.</p>
+  <a href="https://wa.me/919444424363?text=Hi%20Ethis%20Fitness!%20I%27m%20interested%20in%20joining." target="_blank" class="cta-wa">
+    <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i>
+    Book Free Trial
+  </a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <img class="lightbox-media" id="lbImg" src="" alt="" style="display:none;">
+    <video class="lightbox-media" id="lbVid" autoplay muted loop playsinline style="display:none;"></video>
+    <div class="lightbox-info">
+      <h2 id="lbTitle"></h2>
+      <p id="lbDesc"></p>
+    </div>
+  </div>
+  <button class="lightbox-close" id="lbClose"><i class="fa fa-times"></i></button>
+  <button class="lightbox-nav prev" id="lbPrev"><i class="fa fa-chevron-left"></i></button>
+  <button class="lightbox-nav next" id="lbNext"><i class="fa fa-chevron-right"></i></button>
+</div>
+
+<!-- Floating WhatsApp -->
+<a class="float-wa" href="https://wa.me/919444424363?text=Hi%20Ethis%20Fitness!%20I%27m%20interested%20in%20joining." target="_blank">
+  <i class="fab fa-whatsapp" style="font-size:1.1rem;"></i>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+(function(){
+
+  /* ── Scroll reveal ── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* ── Filter ── */
+  const cards = document.querySelectorAll('.media-card');
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelector('.filter-btn.active').classList.remove('active');
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(card => {
+        const cats = card.dataset.cat || '';
+        const show = f === 'all' || cats.includes(f);
+        card.style.display = show ? 'block' : 'none';
+      });
+    });
+  });
+
+  /* ── Lightbox ── */
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbVid = document.getElementById('lbVid');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbDesc = document.getElementById('lbDesc');
+
+  let current = 0;
+  let visibleCards = [];
+
+  function openLb(idx){
+    visibleCards = [...cards].filter(c => c.style.display !== 'none');
+    current = idx;
+    showItem(current);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showItem(idx){
+    const card = visibleCards[idx];
+    if(!card) return;
+    const vid = card.querySelector('video');
+    const img = card.querySelector('img');
+    lbTitle.textContent = card.dataset.title || '';
+    lbDesc.textContent = card.dataset.desc || '';
+    if(vid){
+      lbImg.style.display = 'none';
+      lbVid.style.display = 'block';
+      lbVid.src = vid.querySelector('source') ? vid.querySelector('source').src : '';
+      lbVid.play();
+    } else if(img){
+      lbVid.style.display = 'none';
+      lbImg.style.display = 'block';
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+    }
+  }
+
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => {
+      visibleCards = [...cards].filter(c => c.style.display !== 'none');
+      const visIdx = visibleCards.indexOf(card);
+      openLb(visIdx);
+    });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', () => {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbVid.pause();
+  });
+  lb.addEventListener('click', e => {
+    if(e.target === lb){ lb.classList.remove('open'); document.body.style.overflow = ''; lbVid.pause(); }
+  });
+  document.getElementById('lbPrev').addEventListener('click', () => {
+    current = (current - 1 + visibleCards.length) % visibleCards.length;
+    showItem(current);
+  });
+  document.getElementById('lbNext').addEventListener('click', () => {
+    current = (current + 1) % visibleCards.length;
+    showItem(current);
+  });
+  document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape'){ lb.classList.remove('open'); document.body.style.overflow = ''; lbVid.pause(); }
+    if(e.key === 'ArrowLeft'){ current = (current - 1 + visibleCards.length) % visibleCards.length; showItem(current); }
+    if(e.key === 'ArrowRight'){ current = (current + 1) % visibleCards.length; showItem(current); }
+  });
+
+})();
+</script>
+</body>
+</html>
