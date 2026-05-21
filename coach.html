@@ -34,7 +34,7 @@ body{
   min-height:100vh;
 }
 
-/* ── NOISE GRAIN ── */
+/* NOISE GRAIN */
 body::after{
   content:'';
   position:fixed;inset:0;z-index:999;pointer-events:none;
@@ -44,7 +44,7 @@ body::after{
   mix-blend-mode:overlay;
 }
 
-/* ── NAV ── */
+/* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
@@ -68,15 +68,13 @@ nav{
 }
 .back-btn:hover{background:rgba(255,45,107,0.15);border-color:var(--hot);transform:translateY(-1px);}
 
-/* ── HERO ── */
+/* HERO */
 .hero{
   min-height:100vh;
   display:grid;place-items:center;
   position:relative;overflow:hidden;
   padding:8rem 3rem 5rem;
 }
-
-/* big diagonal accent */
 .hero::before{
   content:'';
   position:absolute;top:-30%;right:-10%;
@@ -95,7 +93,6 @@ nav{
   pointer-events:none;white-space:nowrap;
   line-height:1;
 }
-
 .hero-grid-bg{
   position:absolute;inset:0;opacity:0.025;
   background-image:
@@ -103,16 +100,12 @@ nav{
     linear-gradient(90deg,var(--muted) 1px,transparent 1px);
   background-size:50px 50px;
 }
-
 .hero-inner{
   position:relative;z-index:1;
   display:grid;grid-template-columns:1fr 1.1fr;
   gap:5rem;align-items:center;
   max-width:1100px;width:100%;
 }
-
-/* left text */
-.hero-text{}
 .hero-tag{
   display:inline-flex;align-items:center;gap:0.5rem;
   border:1px solid rgba(255,45,107,0.35);color:var(--hot);
@@ -147,8 +140,6 @@ nav{
   margin-bottom:2.5rem;
 }
 .cert-pill i{font-size:0.9rem;}
-
-/* hero stats row */
 .hero-stats{
   display:flex;gap:2.5rem;flex-wrap:wrap;
   padding-top:2rem;
@@ -161,13 +152,9 @@ nav{
 }
 .h-stat-lbl{font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);margin-top:0.15rem;}
 
-/* hero visual: stacked cards */
+/* HERO VISUAL */
 .hero-visual{position:relative;height:520px;}
-
-.photo-stack{
-  position:relative;width:100%;height:100%;
-}
-
+.photo-stack{position:relative;width:100%;height:100%;}
 .stack-card{
   position:absolute;
   border-radius:20px;overflow:hidden;
@@ -175,32 +162,12 @@ nav{
   transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .stack-card img{width:100%;height:100%;object-fit:cover;display:block;}
-
-.stack-card:nth-child(1){
-  width:78%;height:420px;
-  top:0;right:0;
-  transform:rotate(2deg);
-  z-index:3;
-}
-.stack-card:nth-child(2){
-  width:62%;height:320px;
-  top:40px;left:0;
-  transform:rotate(-3deg);
-  z-index:2;
-  border-color:rgba(255,45,107,0.2);
-}
-.stack-card:nth-child(3){
-  width:45%;height:220px;
-  bottom:0;right:5%;
-  transform:rotate(1.5deg);
-  z-index:1;
-}
-
+.stack-card:nth-child(1){width:78%;height:420px;top:0;right:0;transform:rotate(2deg);z-index:3;}
+.stack-card:nth-child(2){width:62%;height:320px;top:40px;left:0;transform:rotate(-3deg);z-index:2;border-color:rgba(255,45,107,0.2);}
+.stack-card:nth-child(3){width:45%;height:220px;bottom:0;right:5%;transform:rotate(1.5deg);z-index:1;}
 .hero-visual:hover .stack-card:nth-child(1){transform:rotate(0deg) translateY(-8px);}
 .hero-visual:hover .stack-card:nth-child(2){transform:rotate(-1deg) translateX(-6px);}
 .hero-visual:hover .stack-card:nth-child(3){transform:rotate(0deg) translateY(6px);}
-
-/* floating badge on visual */
 .float-badge{
   position:absolute;bottom:30px;left:20px;z-index:10;
   background:rgba(8,8,8,0.85);
@@ -217,7 +184,7 @@ nav{
 }
 .float-badge .fb-text{font-size:0.72rem;color:var(--muted2);letter-spacing:1px;text-transform:uppercase;line-height:1.4;}
 
-/* instagram btn */
+/* INSTAGRAM BTN */
 .insta-btn{
   display:inline-flex;align-items:center;gap:0.6rem;
   background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
@@ -230,7 +197,7 @@ nav{
 .insta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(225,48,108,0.5);}
 .insta-btn i{font-size:1.1rem;}
 
-/* ── CREDENTIALS BELT ── */
+/* BELT */
 .belt{
   background:var(--card2);
   border-top:1px solid var(--glass-b);
@@ -241,7 +208,7 @@ nav{
 }
 .belt-track{
   display:inline-flex;gap:0;
-  animation:scrollBelt 18s linear infinite;
+  animation:scrollBelt 26s linear infinite;
 }
 .belt-track:hover{animation-play-state:paused;}
 .belt-item{
@@ -251,28 +218,19 @@ nav{
   color:var(--muted2);font-weight:600;
 }
 .belt-item i{color:var(--hot);font-size:0.8rem;}
-.belt-dot{
-  display:inline-block;width:4px;height:4px;border-radius:50%;
-  background:rgba(255,45,107,0.3);
-}
-@keyframes scrollBelt{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
-}
+.belt-dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:rgba(255,45,107,0.3);}
+@keyframes scrollBelt{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-/* ── SECTION COMMONS ── */
+/* SECTION COMMONS */
 section{padding:6rem 3rem;}
 .section-tag{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--hot);font-weight:600;margin-bottom:0.75rem;}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:2px;line-height:1;margin-bottom:1.2rem;}
 .section-sub{color:var(--muted2);font-size:1rem;max-width:480px;line-height:1.7;font-weight:300;}
 
-/* ── SPECIALISATIONS ── */
+/* SPECIALISATIONS */
 #skills{background:var(--surface);}
 .skills-wrap{max-width:1100px;margin:3rem auto 0;}
-.skills-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:1rem;margin-top:2.5rem;
-}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:2.5rem;}
 .skill-card{
   background:var(--card);border:1px solid var(--glass-b);
   border-radius:16px;padding:1.6rem;
@@ -295,49 +253,67 @@ section{padding:6rem 3rem;}
 .skill-card h3{font-size:1rem;font-weight:700;margin-bottom:0.5rem;}
 .skill-card p{font-size:0.82rem;color:var(--muted2);line-height:1.6;}
 
-/* ── CERTIFICATES ── */
+/* CHAMPIONSHIPS */
+#championships{
+  background:var(--card2);
+  border-top:1px solid rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.champ-wrap{max-width:1100px;margin:0 auto;}
+.champ-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem;margin-top:2.5rem;}
+.champ-card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:1.8rem;
+  position:relative;overflow:hidden;
+  transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;
+}
+.champ-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,0.6);}
+.champ-card.featured{border-color:rgba(255,45,107,0.25);}
+.champ-card .top-bar{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  border-radius:18px 18px 0 0;
+}
+.champ-card .card-head{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.champ-card .card-icon{
+  width:52px;height:52px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;
+}
+.champ-card .card-sub{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:0.2rem;}
+.champ-card h3{font-size:1.05rem;font-weight:700;}
+.champ-card p{font-size:0.85rem;color:var(--muted2);line-height:1.7;}
+.champ-pills{margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;}
+.cpill{
+  padding:0.25rem 0.7rem;border-radius:999px;
+  font-size:0.68rem;letter-spacing:1px;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.03);
+  color:rgba(255,255,255,0.7);
+}
+
+/* CERTIFICATES */
 #certificates{background:var(--deep);}
 .cert-wrap{max-width:1100px;margin:0 auto;}
-
 .cert-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;}
-
 .cert-count{
   font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;
   background:linear-gradient(90deg,var(--hot),var(--electric));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
 .cert-count-lbl{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);}
-
-/* cert masonry */
-.cert-masonry{
-  columns:4;column-gap:0.9rem;
-}
+.cert-masonry{columns:4;column-gap:0.9rem;}
 @media(max-width:900px){.cert-masonry{columns:3;}}
 @media(max-width:620px){.cert-masonry{columns:2;}}
-
 .cert-item{
-  break-inside:avoid;
-  margin-bottom:0.9rem;
-  position:relative;
-  border-radius:14px;overflow:hidden;
-  border:1px solid var(--glass-b);
-  cursor:pointer;
+  break-inside:avoid;margin-bottom:0.9rem;
+  position:relative;border-radius:14px;overflow:hidden;
+  border:1px solid var(--glass-b);cursor:pointer;
   transition:transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94),border-color 0.3s,box-shadow 0.3s;
   background:var(--card);
 }
-.cert-item:hover{
-  transform:translateY(-5px) scale(1.02);
-  border-color:rgba(255,45,107,0.35);
-  box-shadow:0 16px 50px rgba(0,0,0,0.7);
-}
-.cert-item img{
-  width:100%;display:block;
-  object-fit:cover;
-  transition:transform 0.4s;
-}
+.cert-item:hover{transform:translateY(-5px) scale(1.02);border-color:rgba(255,45,107,0.35);box-shadow:0 16px 50px rgba(0,0,0,0.7);}
+.cert-item img{width:100%;display:block;object-fit:cover;transition:transform 0.4s;}
 .cert-item:hover img{transform:scale(1.05);}
-
-/* cert number label */
 .cert-num{
   position:absolute;bottom:0;left:0;right:0;
   background:linear-gradient(to top,rgba(8,8,8,0.9),transparent);
@@ -346,19 +322,15 @@ section{padding:6rem 3rem;}
   color:rgba(255,255,255,0.5);
 }
 
-/* ── POSES / ACTION SHOTS ── */
+/* POSES */
 #poses{background:var(--surface);}
 .poses-wrap{max-width:1100px;margin:0 auto;}
-
 .pose-scroll-track{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:0.9rem;
-  margin-top:2.5rem;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:0.9rem;margin-top:2.5rem;
 }
 @media(max-width:900px){.pose-scroll-track{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:560px){.pose-scroll-track{grid-template-columns:repeat(2,1fr);}}
-
 .pose-item{
   position:relative;border-radius:16px;overflow:hidden;
   border:1px solid var(--glass-b);
@@ -372,11 +344,7 @@ section{padding:6rem 3rem;}
   box-shadow:0 20px 60px rgba(0,0,0,0.7),0 0 0 1px rgba(255,45,107,0.1);
   z-index:2;
 }
-.pose-item img{
-  width:100%;height:100%;
-  object-fit:cover;display:block;
-  transition:transform 0.4s;filter:saturate(1.1);
-}
+.pose-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;filter:saturate(1.1);}
 .pose-item:hover img{transform:scale(1.08);}
 .pose-overlay{
   position:absolute;inset:0;
@@ -385,18 +353,11 @@ section{padding:6rem 3rem;}
   display:flex;align-items:flex-end;padding:0.75rem;
 }
 .pose-item:hover .pose-overlay{opacity:1;}
-.pose-overlay span{
-  font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;
-  color:rgba(255,255,255,0.7);
-}
-
-/* accent pose – first one is large */
-.pose-item:first-child{
-  grid-row:span 2;aspect-ratio:auto;height:100%;
-}
+.pose-overlay span{font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.7);}
+.pose-item:first-child{grid-row:span 2;aspect-ratio:auto;height:100%;}
 .pose-item:first-child img{height:100%;}
 
-/* ── LIGHTBOX ── */
+/* LIGHTBOX */
 .lightbox{
   position:fixed;inset:0;z-index:300;
   background:rgba(4,4,4,0.97);
@@ -434,7 +395,7 @@ section{padding:6rem 3rem;}
 .lb-prev{left:1.5rem;}
 .lb-next{right:1.5rem;}
 
-/* ── CTA ── */
+/* CTA */
 #cta{
   background:
     radial-gradient(ellipse 90% 120% at 20% 50%,rgba(255,45,107,0.14) 0%,transparent 55%),
@@ -443,13 +404,8 @@ section{padding:6rem 3rem;}
   border-top:1px solid rgba(255,255,255,0.05);
   border-bottom:1px solid rgba(255,255,255,0.05);
 }
-.cta-inner{
-  max-width:700px;margin:0 auto;text-align:center;
-}
-.cta-inner h2{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:3px;margin-bottom:0.75rem;
-}
+.cta-inner{max-width:700px;margin:0 auto;text-align:center;}
+.cta-inner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:3px;margin-bottom:0.75rem;}
 .cta-inner p{color:var(--muted2);margin-bottom:2rem;font-size:1rem;line-height:1.7;}
 .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
 .btn-wa{
@@ -470,7 +426,7 @@ section{padding:6rem 3rem;}
 }
 .btn-home:hover{border-color:var(--hot);background:rgba(255,45,107,0.08);}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{
   background:#030303;border-top:1px solid rgba(255,255,255,0.04);
   padding:2.5rem 3rem;text-align:center;
@@ -482,7 +438,7 @@ footer{
 }
 footer p{font-size:0.78rem;color:var(--muted);}
 
-/* ── FLOATING WA ── */
+/* FLOATING WA */
 .float-wa{
   position:fixed;right:18px;bottom:18px;z-index:120;
   display:inline-flex;align-items:center;gap:0.6rem;
@@ -492,11 +448,11 @@ footer p{font-size:0.78rem;color:var(--muted);}
   font-weight:800;font-size:0.9rem;
 }
 
-/* ── SCROLL REVEAL ── */
+/* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.55s,transform 0.55s;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media(max-width:860px){
   nav{padding:1rem 1.5rem;}
   .hero{padding:7rem 1.5rem 4rem;}
@@ -506,6 +462,7 @@ footer p{font-size:0.78rem;color:var(--muted);}
   .stack-card:nth-child(2){width:60%;height:220px;}
   .stack-card:nth-child(3){width:45%;height:160px;}
   section{padding:4rem 1.5rem;}
+  .champ-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -519,12 +476,12 @@ footer p{font-size:0.78rem;color:var(--muted);}
   </a>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-inner">
 
-    <!-- LEFT -->
+    <!-- LEFT TEXT -->
     <div class="hero-text reveal">
       <div class="hero-tag">
         <i class="fa fa-dumbbell" style="font-size:0.7rem;"></i>
@@ -534,8 +491,8 @@ footer p{font-size:0.78rem;color:var(--muted);}
         ETHIRAJ
         <span>.S</span>
       </h1>
-      <p class="hero-role">Certified Fitness Trainer &amp; Coach</p>
-      <p class="hero-bio">Over 10 years of transforming lives through expert coaching, personalised training, and a deep commitment to every member's journey — from the very first rep to their greatest milestone.</p>
+      <p class="hero-role">Certified Fitness Trainer &amp; Champion Athlete</p>
+      <p class="hero-bio">Over 10 years of transforming lives through expert coaching, personalised training, and a deep commitment to every member's journey — from the very first rep to their greatest milestone. A decorated state and university-level champion in Body Building and Power Lifting.</p>
       <div class="cert-pill">
         <i class="fa fa-certificate"></i>
         P.G Diploma in Gym Instruction · Certified Trainer
@@ -556,6 +513,10 @@ footer p{font-size:0.78rem;color:var(--muted);}
           <div class="h-stat-lbl">Years Training</div>
         </div>
         <div>
+          <div class="h-stat-num">8</div>
+          <div class="h-stat-lbl">Championships</div>
+        </div>
+        <div>
           <div class="h-stat-num">143+</div>
           <div class="h-stat-lbl">Members Coached</div>
         </div>
@@ -566,21 +527,18 @@ footer p{font-size:0.78rem;color:var(--muted);}
       </div>
     </div>
 
-    <!-- RIGHT – stacked photos -->
+    <!-- RIGHT VISUAL -->
     <div class="hero-visual reveal" style="transition-delay:0.15s;">
       <div class="photo-stack">
         <div class="stack-card">
           <img loading="lazy"
                src="images/pose6.png"
                onerror="this.src='https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&auto=format&fit=crop&q=80'"
-               alt="Coach Ethiraj – pose 1">
+               alt="Coach Ethiraj">
         </div>
-        
       </div>
       <div class="float-badge">
-        <div>
-          <div class="fb-num">10+</div>
-        </div>
+        <div><div class="fb-num">10+</div></div>
         <div class="fb-text">Years of<br>Expert Training</div>
       </div>
     </div>
@@ -588,30 +546,29 @@ footer p{font-size:0.78rem;color:var(--muted);}
   </div>
 </section>
 
-<!-- ── SCROLLING BELT ── -->
+<!-- SCROLLING BELT -->
 <div class="belt">
   <div class="belt-track">
-    <!-- repeated twice for seamless loop -->
-    <span class="belt-item"><i class="fa fa-certificate"></i> P.G Diploma – Gym Instruction</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-dumbbell"></i> Strength &amp; Conditioning</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-heartbeat"></i> Aerobics Certified</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-fire"></i> CrossFit Training</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-apple-alt"></i> Nutrition Guidance</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-running"></i> Personal Coaching</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-medal"></i> 10+ Years Experience</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-users"></i> 143+ Members Transformed</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-certificate"></i> P.G Diploma – Gym Instruction</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-dumbbell"></i> Strength &amp; Conditioning</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-heartbeat"></i> Aerobics Certified</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-fire"></i> CrossFit Training</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-apple-alt"></i> Nutrition Guidance</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-running"></i> Personal Coaching</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-medal"></i> 10+ Years Experience</span><span class="belt-dot"></span>
-    <span class="belt-item"><i class="fa fa-users"></i> 143+ Members Transformed</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-trophy"></i> Mr. East Tamilnadu 2008 – 1st Place</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-medal"></i> Best Physique 85kg – Thiruvalluvar University 2002–03</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-dumbbell"></i> Power Lifting 1st Place – 2007–08</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-award"></i> Best Physique 70kg – Vellore 2007–08</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-dumbbell"></i> Power Lifting 98kg – 1st Place 2013–14</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-star"></i> Best Physique 87kg – 1st Place 2013–14</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-university"></i> All India Inter-University Power Lifting 2013–14</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-certificate"></i> TNBBA Body Building Championship 2012–13</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-trophy"></i> Mr. East Tamilnadu 2008 – 1st Place</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-medal"></i> Best Physique 85kg – Thiruvalluvar University 2002–03</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-dumbbell"></i> Power Lifting 1st Place – 2007–08</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-award"></i> Best Physique 70kg – Vellore 2007–08</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-dumbbell"></i> Power Lifting 98kg – 1st Place 2013–14</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-star"></i> Best Physique 87kg – 1st Place 2013–14</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-university"></i> All India Inter-University Power Lifting 2013–14</span><span class="belt-dot"></span>
+    <span class="belt-item"><i class="fa fa-certificate"></i> TNBBA Body Building Championship 2012–13</span><span class="belt-dot"></span>
   </div>
 </div>
 
-<!-- ── SPECIALISATIONS ── -->
+<!-- SPECIALISATIONS -->
 <section id="skills">
   <div class="skills-wrap">
     <div class="reveal">
@@ -621,13 +578,20 @@ footer p{font-size:0.78rem;color:var(--muted);}
     </div>
     <div class="skills-grid">
       <div class="skill-card reveal" style="transition-delay:0.05s;">
-        
+        <div class="skill-icon">🏋️</div>
+        <h3>Strength &amp; Body Building</h3>
+        <p>Full gym strength training — guided by a state-level body building champion who knows exactly how to build muscle safely and effectively.</p>
+      </div>
       <div class="skill-card reveal" style="transition-delay:0.1s;">
-       <div class="skill-card reveal" style="transition-delay:0.1s;">
-  <div class="skill-icon">🩺</div>
-  <h3>Sugar &amp; Cholesterol Management</h3>
-  <p>Specialised low-impact training programmes designed for diabetic and high-cholesterol patients — safe, progressive and medically mindful.</p>
-</div>
+        <div class="skill-icon">🏆</div>
+        <h3>Power Lifting &amp; Conditioning</h3>
+        <p>University and national-level experience in power lifting — transferred into structured conditioning programmes for all fitness levels.</p>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:0.12s;">
+        <div class="skill-icon">🩺</div>
+        <h3>Sugar &amp; Cholesterol Management</h3>
+        <p>Specialised low-impact training programmes designed for diabetic and high-cholesterol patients — safe, progressive and medically mindful.</p>
+      </div>
       <div class="skill-card reveal" style="transition-delay:0.15s;">
         <div class="skill-icon">🧘</div>
         <h3>Posture &amp; Rehabilitation</h3>
@@ -639,31 +603,209 @@ footer p{font-size:0.78rem;color:var(--muted);}
         <p>Custom meal and supplement guidance to complement your workout — whether the goal is fat loss, muscle gain or health.</p>
       </div>
       <div class="skill-card reveal" style="transition-delay:0.25s;">
-        <div class="skill-icon">👩</div>
-        <h3>Women's Specialised Training</h3>
-        <p>Safe, progressive programmes for women at all stages — including post-natal recovery, PCOS management and confidence building.</p>
+        <div class="skill-icon">👥</div>
+        <h3>Personalised Coaching</h3>
+        <p>Individual attention for every member — tailored plans, form correction, weekly progress tracking and continuous motivation.</p>
       </div>
       <div class="skill-card reveal" style="transition-delay:0.3s;">
         <div class="skill-icon">📊</div>
         <h3>Transformation Tracking</h3>
-        <p>Regular assessments, body composition tracking and milestone reviews to keep you motivated and on target.</p>
+        <p>Regular assessments, body composition tracking and milestone reviews to keep you motivated and on target every step of the way.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CERTIFICATES ── -->
+<!-- CHAMPIONSHIPS & TITLES -->
+<section id="championships">
+  <div class="champ-wrap">
+    <div class="reveal">
+      <div class="section-tag">Titles &amp; Championships</div>
+      <h2 class="section-title">Competitive<br>Achievements</h2>
+      <p class="section-sub">A decorated competitive career spanning 15+ years — from university podiums to state-level body building championships.</p>
+    </div>
+
+    <!-- Summary Stats Row -->
+    <div class="reveal" style="transition-delay:0.05s;display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;margin-bottom:0.5rem;">
+      <div style="background:var(--card);border:1px solid rgba(255,45,107,0.2);border-radius:14px;padding:1.2rem 1.8rem;display:flex;flex-direction:column;gap:0.25rem;min-width:140px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;background:linear-gradient(90deg,var(--hot),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">6</div>
+        <div style="font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);">1st Place Titles</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:1.2rem 1.8rem;display:flex;flex-direction:column;gap:0.25rem;min-width:140px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;background:linear-gradient(90deg,var(--hot),var(--electric));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">8</div>
+        <div style="font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);">Total Championships</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(200,255,0,0.15);border-radius:14px;padding:1.2rem 1.8rem;display:flex;flex-direction:column;gap:0.25rem;min-width:140px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;color:var(--lime);">2</div>
+        <div style="font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);">State Level Titles</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(0,196,154,0.15);border-radius:14px;padding:1.2rem 1.8rem;display:flex;flex-direction:column;gap:0.25rem;min-width:140px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;color:#00C49A;">1</div>
+        <div style="font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);">National Level</div>
+      </div>
+    </div>
+
+    <div class="champ-grid">
+
+      <!-- Card 1 – Mr. East Tamilnadu 2008 -->
+      <div class="champ-card featured reveal" style="transition-delay:0.05s;">
+        <div class="top-bar" style="background:linear-gradient(90deg,var(--hot),var(--electric));"></div>
+        <div class="card-head">
+          <div class="card-icon" style="background:rgba(255,45,107,0.12);">🏆</div>
+          <div>
+            <div class="card-sub" style="color:var(--hot);">1st Place · 02 March 2008</div>
+            <h3>Mr. East Tamilnadu 2008</h3>
+          </div>
+        </div>
+        <p>80kg Weight Class Body Building Championship held at Arignar Anna Stadium, Cuddalore District. Awarded by Tamilnadu Amateure Body Building Association (TABBA) — affiliated to Indian Body Building Federation, recognised by the Sports Development Authority of India and Government of India, Department of Youth Affairs &amp; Sports.</p>
+        <div class="champ-pills">
+          <span class="cpill" style="border-color:rgba(255,45,107,0.35);background:rgba(255,45,107,0.08);color:var(--hot);">State Level</span>
+          <span class="cpill">Body Building</span>
+          <span class="cpill">80kg Category</span>
+        </div>
+      </div>
+
+      <!-- Card 2 – Best Physique 85kg 2002-03 -->
+      <div class="champ-card reveal" style="transition-delay:0.1s;">
+        <div class="top-bar" style="background:linear-gradient(90deg,#C8FF00,#00C49A);"></div>
+        <div class="card-head">
+          <div class="card-icon" style="background:rgba(200,255,0,0.08);">🥇</div>
+          <div>
+            <div class="card-sub" style="color:var(--lime);">1st Place · 2002–03</div>
+            <h3>Best Physique – 85kg</h3>
+          </div>
+        </div>
+        <p>Inter-Divisional Tournament, Thiruvalluvar University, Vellore — Best Physique in the 85kg category, representing St. Joseph's College, Cuddalore. Merit Certificate issued by the Vice Chancellor and Director of Physical Education.</p>
+        <div class="champ-pills">
+          <span class="cpill" style="border-color:rgba(200,255,0,0.3);background:rgba(200,255,0,0.07);color:var(--lime);">University Level</span>
+          <span class="cpill">Physique</span>
+          <span class="cpill">85kg Category</span>
+        </div>
+      </div>
+
+      <!-- Card 3 – Power Lifting 2007-08 -->
+      <div class="champ-card reveal" style="transition-delay:0.15s;">
+        <div class="top-bar" style="background:linear-gradient(90deg,#FF6B00,#FFD700);"></div>
+        <div class="card-head">
+          <div class="card-icon" style="background:rgba(255,107,0,0.1);">💪</div>
+          <div>
+            <div class="card-sub" style="color:#FF6B00;">1st Place · 2007–08</div>
+            <h3>Power Lifting – Periyar Arts</h3>
+          </div>
+        </div>
+        <p>Inter-Divisional Power Lifting competition, Thiruvalluvar University — First position representing Periyar Arts College, Cuddalore. Certified by both the Director of Physical Education and the Vice Chancellor of Thiruvalluvar University, Vellore.</p>
+        <div class="champ-pills">
+          <span class="cpill" style="border-color:rgba(255,107,0,0.35);background:rgba(255,107,0,0.08);color:#FF6B00;">University Level</span>
+          <span class="cpill">Power Lifting</span>
+        </div>
+      </div>
+
+      <!-- Card 4 – Best Physique 70kg Vellore 2007-08 -->
+      <div class="champ-card reveal" style="transition-delay:0.2s;">
+        <div class="top-bar" style="background:linear-gradient(90deg,#7B2FF7,#FF2D6B);"></div>
+        <div class="card-head">
+          <div class="card-icon" style="background:rgba(123,47,247,0.1);">🏅</div>
+          <div>
+            <div class="card-sub" style="color:#a07cf7;">1st Place · 2007–08</div>
+            <h3>Best Physique – 70kg, Vellore</h3>
+          </div>
+        </div>
+        <p>Inter-Divisional Best Physique — 70kg category, First position held at Vellore, Thiruvalluvar University 2007–08. Representing Periyar Arts, Cuddalore. Signed and certified by the Vice Chancellor.</p>
+        <div class="champ-pills">
+          <span class="cpill" style="border-color:rgba(123,47,247,0.35);background:rgba(123,47,247,0.08);color:#a07cf7;">University Level</span>
+          <span class="cpill">Physique</span>
+          <span class="cpill">70kg Category</span>
+        </div>
+      </div>
+
+      <!-- Card 5 – Power Lifting 98kg 2013-14 -->
+      <div class="champ-card reveal" style="transition-delay:0.25s;">
+        <div class="top-bar" style="background:linear-gradient(90deg,var(--hot),var(--electric));"></div>
+        <div class="card-head">
+          <div class="card-icon" style="background:rgba(255,45,107,0.1);">💪</div>
+          <div>
+            <div class="card-sub" style="color:var(--hot);">1st Place · 2013–14</div>
+            <h3>Power Lifting – 98kg</h3>
+          </div>
+        </div>
+        <p>Inter-Divisional Power Lifting — 98kg category, First position representing St. Joseph's Arts &amp; Science College, Cuddalore. Thiruvalluvar University 2013–14. Certified by the Vice Chancellor.</p>
+        <div class="champ-pills">
+          <span class="cpill" style="border-color:rgba(255,45,107,0.35);background:rgba(255,45,107,0.08);color:var(--hot);">University Level</span>
+          <span class="cpill">Power Lifting</span>
+          <span class="cpill">98kg Category</span>
+        </div>
+      </div>
+
+      <!-- Card 6 – Best Physique 87kg 2013-14 -->
+      <div class="champ-card reveal" style="transition-delay:0.3s;">
+        <div class="top-bar" style="background:linear-gradient(90deg,#C8FF00,#FF6B00);"></div>
+        <div class="card-head">
+          <div class="card-icon" style="background:rgba(200,255,0,0.08);">🏆</div>
+          <div>
+            <div class="card-sub" style="color:var(--lime);">1st Place · 2013–14</div>
+            <h3>Best Physique – 87kg</h3>
+          </div>
+        </div>
+        <p>Inter-Divisional Best Physique — 87kg category, First position, St. Joseph's Arts &amp; Science College, Cuddalore, Thiruvalluvar University 2013–14. Signed and certified by the Vice Chancellor.</p>
+        <div class="champ-pills">
+          <span class="cpill" style="border-color:rgba(200,255,0,0.3);background:rgba(200,255,0,0.07);color:var(--lime);">University Level</span>
+          <span class="cpill">Physique</span>
+          <span class="cpill">87kg Category</span>
+        </div>
+      </div>
+
+      <!-- Card 7 – All India South Zone 2013-14 -->
+      <div class="champ-card reveal" style="transition-delay:0.35s;">
+        <div class="top-bar" style="background:linear-gradient(90deg,#00C49A,#7B2FF7);"></div>
+        <div class="card-head">
+          <div class="card-icon" style="background:rgba(0,196,154,0.1);">🌏</div>
+          <div>
+            <div class="card-sub" style="color:#00C49A;">All India · 2013–14</div>
+            <h3>South Zone Inter-University</h3>
+          </div>
+        </div>
+        <p>Represented Thiruvalluvar University in Power Lifting at the All India / South Zone Inter-University Tournament held in Coimbatore — organised by Hindusthan University, 2013–14. Meritorious Sportsman Certificate (Form-III) issued, qualifying for Class III/IV Government Employment consideration.</p>
+        <div class="champ-pills">
+          <span class="cpill" style="border-color:rgba(0,196,154,0.35);background:rgba(0,196,154,0.08);color:#00C49A;">National Level</span>
+          <span class="cpill">Power Lifting</span>
+          <span class="cpill">Inter-University</span>
+        </div>
+      </div>
+
+      <!-- Card 8 – TNBBA 2012-13 -->
+      <div class="champ-card reveal" style="transition-delay:0.4s;">
+        <div class="top-bar" style="background:linear-gradient(90deg,#FF6B00,#FF2D6B);"></div>
+        <div class="card-head">
+          <div class="card-icon" style="background:rgba(255,107,0,0.1);">🥈</div>
+          <div>
+            <div class="card-sub" style="color:#FF6B00;">2nd Place · 2012–13</div>
+            <h3>TNBBA Body Building – 80–90kg</h3>
+          </div>
+        </div>
+        <p>Senior division, 80–90kg category — 2nd Place at the Open Tamilnadu Body Building Championship 2012–13, held at Kalpickett Palaiyam. Certified by the Tamilnadu Body Builders Association (TNBBA), affiliated to the Indian Body Building Federation, recognised by the Sports Authority of India.</p>
+        <div class="champ-pills">
+          <span class="cpill" style="border-color:rgba(255,107,0,0.35);background:rgba(255,107,0,0.08);color:#FF6B00;">State Level</span>
+          <span class="cpill">Body Building</span>
+          <span class="cpill">80–90kg Category</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
 <section id="certificates">
   <div class="cert-wrap">
     <div class="cert-header reveal">
       <div>
         <div class="section-tag">Credentials</div>
         <h2 class="section-title">Certifications &amp;<br>Achievements</h2>
-        <p class="section-sub" style="margin-top:0.5rem;">Backed by formal education and continuous professional development.</p>
+        <p class="section-sub" style="margin-top:0.5rem;">Backed by formal education and a long history of competitive excellence.</p>
       </div>
       <div style="text-align:right;">
-        <div class="cert-count">9+</div>
-        <div class="cert-count-lbl">Certificates</div>
+        <div class="cert-count">10+</div>
+        <div class="cert-count-lbl">Certificates &amp; Titles</div>
       </div>
     </div>
 
@@ -671,62 +813,68 @@ footer p{font-size:0.78rem;color:var(--muted);}
       <div class="cert-item reveal" data-src="images/certificate1.jpeg" data-label="Certificate 1">
         <img loading="lazy" src="images/certificate1.jpeg"
              onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
-             alt="Certificate 1">
-        <div class="cert-num">Cert · 01</div>
+             alt="Mr. East Tamilnadu 2008">
+        <div class="cert-num">Mr. East Tamilnadu · 2008</div>
       </div>
       <div class="cert-item reveal" style="transition-delay:0.05s;" data-src="images/certificate2.jpeg" data-label="Certificate 2">
         <img loading="lazy" src="images/certificate2.jpeg"
              onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
-             alt="Certificate 2">
-        <div class="cert-num">Cert · 02</div>
+             alt="Best Physique 85kg 2002-03">
+        <div class="cert-num">Best Physique 85kg · 2002–03</div>
       </div>
-      <div class="cert-item reveal" style="transition-delay:0.1s;" data-src="images/certificate4.jpeg" data-label="Certificate 4">
+      <div class="cert-item reveal" style="transition-delay:0.1s;" data-src="images/certificate3.jpeg" data-label="Certificate 3">
+        <img loading="lazy" src="images/certificate3.jpeg"
+             onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
+             alt="Power Lifting 2007-08">
+        <div class="cert-num">Power Lifting · 2007–08</div>
+      </div>
+      <div class="cert-item reveal" style="transition-delay:0.15s;" data-src="images/certificate4.jpeg" data-label="Certificate 4">
         <img loading="lazy" src="images/certificate4.jpeg"
              onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
-             alt="Certificate 4">
-        <div class="cert-num">Cert · 03</div>
+             alt="Best Physique 70kg Vellore 2007-08">
+        <div class="cert-num">Best Physique 70kg · Vellore 2007–08</div>
       </div>
-      <div class="cert-item reveal" style="transition-delay:0.15s;" data-src="images/certificate5.jpeg" data-label="Certificate 5">
+      <div class="cert-item reveal" style="transition-delay:0.2s;" data-src="images/certificate5.jpeg" data-label="Certificate 5">
         <img loading="lazy" src="images/certificate5.jpeg"
              onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
-             alt="Certificate 5">
-        <div class="cert-num">Cert · 04</div>
+             alt="Power Lifting 98kg 2013-14">
+        <div class="cert-num">Power Lifting 98kg · 2013–14</div>
       </div>
-      <div class="cert-item reveal" style="transition-delay:0.2s;" data-src="images/certificate6.jpeg" data-label="Certificate 6">
+      <div class="cert-item reveal" style="transition-delay:0.25s;" data-src="images/certificate6.jpeg" data-label="Certificate 6">
         <img loading="lazy" src="images/certificate6.jpeg"
              onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
-             alt="Certificate 6">
-        <div class="cert-num">Cert · 05</div>
+             alt="Best Physique 87kg 2013-14">
+        <div class="cert-num">Best Physique 87kg · 2013–14</div>
       </div>
-      <div class="cert-item reveal" style="transition-delay:0.25s;" data-src="images/certificate7.jpeg" data-label="Certificate 7">
+      <div class="cert-item reveal" style="transition-delay:0.3s;" data-src="images/certificate7.jpeg" data-label="Certificate 7">
         <img loading="lazy" src="images/certificate7.jpeg"
              onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
-             alt="Certificate 7">
-        <div class="cert-num">Cert · 06</div>
+             alt="All India South Zone Inter-University 2013-14">
+        <div class="cert-num">All India South Zone · 2013–14</div>
       </div>
-      <div class="cert-item reveal" style="transition-delay:0.3s;" data-src="images/certificate8.jpeg" data-label="Certificate 8">
+      <div class="cert-item reveal" style="transition-delay:0.35s;" data-src="images/certificate8.jpeg" data-label="Certificate 8">
         <img loading="lazy" src="images/certificate8.jpeg"
              onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
-             alt="Certificate 8">
-        <div class="cert-num">Cert · 07</div>
+             alt="TNBBA Body Building 2012-13">
+        <div class="cert-num">TNBBA Championship · 2012–13</div>
       </div>
-      <div class="cert-item reveal" style="transition-delay:0.35s;" data-src="images/certificate9.jpeg" data-label="Certificate 9">
+      <div class="cert-item reveal" style="transition-delay:0.4s;" data-src="images/certificate9.jpeg" data-label="Certificate 9">
         <img loading="lazy" src="images/certificate9.jpeg"
              onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
              alt="Certificate 9">
-        <div class="cert-num">Cert · 08</div>
+        <div class="cert-num">Certificate · 09</div>
       </div>
-      <div class="cert-item reveal" style="transition-delay:0.4s;" data-src="images/certificate10.jpeg" data-label="Certificate 10">
+      <div class="cert-item reveal" style="transition-delay:0.45s;" data-src="images/certificate10.jpeg" data-label="Certificate 10">
         <img loading="lazy" src="images/certificate10.jpeg"
              onerror="this.src='https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=400&auto=format&fit=crop&q=80'"
              alt="Certificate 10">
-        <div class="cert-num">Cert · 09</div>
+        <div class="cert-num">Certificate · 10</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── ACTION SHOTS / POSES ── -->
+<!-- ACTION SHOTS / POSES -->
 <section id="poses">
   <div class="poses-wrap">
     <div class="reveal">
@@ -782,7 +930,7 @@ footer p{font-size:0.78rem;color:var(--muted);}
   </div>
 </section>
 
-<!-- ── CTA ── -->
+<!-- CTA -->
 <section id="cta">
   <div class="cta-inner reveal">
     <div class="section-tag" style="text-align:center;margin-bottom:1rem;">Train With The Best</div>
@@ -824,13 +972,15 @@ footer p{font-size:0.78rem;color:var(--muted);}
 <script>
 (function(){
 
-  /* ── Scroll reveal ── */
+  /* Scroll reveal */
   const revObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); }});
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('visible'); revObs.unobserve(e.target); }
+    });
   }, {threshold:0.07});
   document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-  /* ── Lightbox ── */
+  /* Lightbox */
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
   let items = [], cur = 0;
@@ -838,7 +988,10 @@ footer p{font-size:0.78rem;color:var(--muted);}
   function buildItems(){
     items = [];
     document.querySelectorAll('.cert-item, .pose-item').forEach(el => {
-      items.push({ src: el.dataset.src || el.querySelector('img').src, alt: el.querySelector('img').alt || '' });
+      items.push({
+        src: el.dataset.src || el.querySelector('img').src,
+        alt: el.querySelector('img').alt || ''
+      });
     });
   }
 
@@ -858,7 +1011,6 @@ footer p{font-size:0.78rem;color:var(--muted);}
     document.body.style.overflow = '';
   }
 
-  /* attach click to cert + pose items */
   function attachClicks(){
     const allItems = [...document.querySelectorAll('.cert-item, .pose-item')];
     allItems.forEach((el, i) => {
@@ -869,8 +1021,12 @@ footer p{font-size:0.78rem;color:var(--muted);}
 
   document.getElementById('lbClose').addEventListener('click', closeLb);
   lb.addEventListener('click', e => { if(e.target === lb) closeLb(); });
-  document.getElementById('lbPrev').addEventListener('click', () => { cur = (cur - 1 + items.length) % items.length; show(cur); });
-  document.getElementById('lbNext').addEventListener('click', () => { cur = (cur + 1) % items.length; show(cur); });
+  document.getElementById('lbPrev').addEventListener('click', () => {
+    cur = (cur - 1 + items.length) % items.length; show(cur);
+  });
+  document.getElementById('lbNext').addEventListener('click', () => {
+    cur = (cur + 1) % items.length; show(cur);
+  });
   document.addEventListener('keydown', e => {
     if(!lb.classList.contains('open')) return;
     if(e.key === 'Escape') closeLb();
